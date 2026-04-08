@@ -1,0 +1,30 @@
+{
+  "attack": "pgd",
+  "model_path": "DU_model/Transformer/best_model_prod_only2_tr.3.64.pth",
+  "data_path": "DU_model/Datasets/Original/prod_successful_announce_attack.csv",
+  "feature_cols": [
+    "Source",
+    "Destination",
+    "Length",
+    "SequenceID",
+    "MessageType",
+    "Time Interval"
+  ],
+  "slice_len": 64,
+  "nhead": 3,
+  "batch_size": 1024,
+  "epsilons": [
+    0.01,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "device": "cuda",
+  "timestamp": "20260318_104654",
+  "pgd_steps": 10,
+  "pgd_alpha_ratio": 0.25,
+  "pgd_random_start": true
+}
