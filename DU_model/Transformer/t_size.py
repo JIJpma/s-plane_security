@@ -20,25 +20,21 @@ class TransformerNN(nn.Module):
         self.classifier = torch.nn.Linear(256, classes)
 
 
-    def forward(self, src):
+    def forward(self, src, return_logits: bool = False):
         """
         Args:
             src: Tensor, shape [batch_size, seq_len, features]
-        Returns:
-            output classes log probabilities
+            return_logits: If True, return raw logits before sigmoid.
         """
-        # src = self.norm(src) should not be necessary since output can be already normalized
-        # pass through encoder layers
         t_out = self.transformer_encoder(src)
-        # flatten already contextualized KPIs
         t_out = torch.flatten(t_out, start_dim=1)
-        # Pass through MLP classifier
         pooler = self.pre_classifier(t_out)
         pooler = torch.nn.ReLU()(pooler)
         pooler = self.dropout(pooler)
-        output = self.classifier(pooler)
-        output = torch.sigmoid(output)
-        return output
+        logits = self.classifier(pooler)
+        if return_logits:
+            return logits
+        return torch.sigmoid(logits)
 
 model = TransformerNN()
 print(sum(p.numel() for p in model.parameters()))
