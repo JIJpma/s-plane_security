@@ -1,0 +1,45 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run PTP packet parser (main.py)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/Testbed/PipelineTestAttacker/test_ptp_packets/main.py",
+      "cwd": "${workspaceFolder}/Testbed/PipelineTestAttacker/test_ptp_packets",
+      "python": "${workspaceFolder}/ptp_env/Scripts/python.exe",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Validate Announce PCAP offsets",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/Testbed/PipelineTestAttacker/test_ptp_packets/validate_announce_pcap.py",
+      "cwd": "${workspaceFolder}/Testbed/PipelineTestAttacker/test_ptp_packets",
+      "python": "${workspaceFolder}/ptp_env/Scripts/python.exe",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Spoof Announce from PCAP (write pcap)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/Testbed/PipelineTestAttacker/test_ptp_packets/spoof_announce_from_pcap.py",
+      "cwd": "${workspaceFolder}/Testbed/PipelineTestAttacker/test_ptp_packets",
+      "python": "${workspaceFolder}/ptp_env/Scripts/python.exe",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "args": [
+        "--src-mac",
+        "02:11:22:33:44:55",
+        "--announce-index",
+        "0",
+        "--count",
+        "10",
+        "--out",
+        "${workspaceFolder}/Testbed/PipelineTestAttacker/test_ptp_packets/spoofed_announce_out.pcap"
+      ]
+    }
+  ]
+}
